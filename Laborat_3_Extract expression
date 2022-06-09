@@ -1,0 +1,44 @@
+import java.util.ArrayDeque;
+import java.util.Scanner;
+
+public class Laba3 {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        //  String test ="1 + (2 - (2 + 3) * 4 / (3 + 1)) * 5";
+        String test =scanner.nextLine();
+        String arrayChars[]=  test.split(" ");
+        ArrayDeque<String> stack = new ArrayDeque <String>();
+        ArrayDeque <String> stack_bracket = new ArrayDeque <String>();
+        for (int i = test.length()-1; i >=0 ; i--) {
+            if ( test.charAt(i)!= ')' ) continue; //Ищем только закрывающие скобки
+            else {
+                for (int j = i-1; j >=0 ; j--) {
+                    if ( test.charAt(j)== ')' ) {
+                        stack_bracket.push(test);
+                        continue;
+                    }
+                    if ( test.charAt(j)!= '(' ) continue;
+                    if ( test.charAt(j)== '(' ) {
+                        if (!stack_bracket.isEmpty()) {
+                            stack_bracket.removeFirst();
+                            continue;
+                        }
+                        else {
+                            stack.push(test.substring(j,i+1));
+                           // System.out.println(test.substring(j,i+1));
+                            break;
+                        }
+                    }
+                }
+
+            }
+        }
+
+        while (!stack.isEmpty()) {
+            System.out.println(stack.removeFirst()+" ");  
+        }
+
+    }
+}
