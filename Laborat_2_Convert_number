@@ -1,0 +1,23 @@
+import java.util.ArrayDeque;
+import java.util.Scanner;
+
+public class Laba2 {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            Integer digit =  Integer.parseInt(scanner.nextLine());
+            ArrayDeque<Integer> stack = new ArrayDeque <Integer>();
+            stack.addFirst(digit);
+
+            while (!stack.isEmpty()) {
+                int digitConvert=stack.removeLast(); 
+                String temp = "";
+                int b;
+                while(digitConvert !=0){
+                    b = digitConvert%2;
+                    temp = b + temp;
+                    digitConvert = digitConvert/2;
+                }
+                System.out.print(temp);
+            }
+        }
+    }
