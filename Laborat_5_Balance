@@ -1,0 +1,40 @@
+import java.util.ArrayDeque;
+import java.util.Scanner;
+
+public class Laba5 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+          String test =scanner.nextLine();;
+        //String test ="{{[[(())]]}}" ;
+
+        ArrayDeque<String> stack = new ArrayDeque <String>();
+        for (int i = 0; i < test.length(); i++) {
+            stack.addLast(test.substring(i,i+1));
+        }
+        boolean isConsistent=true;
+
+
+        while (!stack.isEmpty()) {
+            String s_first = stack.removeFirst();
+            String s_last = stack.removeLast();
+            boolean hasEqualsIteration=false;
+            if (s_first.equals("{")) hasEqualsIteration=s_last.equals("}");
+            if (s_first.equals("[")) hasEqualsIteration=s_last.equals("]");
+            if (s_first.equals("(")) hasEqualsIteration=s_last.equals(")");
+            if (s_first.equals(")")) hasEqualsIteration=s_last.equals("(");
+            if (s_first.equals("}")) hasEqualsIteration=s_last.equals("{");
+            if (s_first.equals("]")) hasEqualsIteration=s_last.equals("[");
+
+            if (!hasEqualsIteration) {
+                isConsistent=false;
+                // System.out.println(s_first+" "+s_last);
+                 isConsistent=false;
+
+                break;
+            }
+        }
+        if (isConsistent) { System.out.println("YES");
+        }else { System.out.println("NO"); }
+    }
+}
